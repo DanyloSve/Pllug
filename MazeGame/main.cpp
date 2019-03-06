@@ -79,7 +79,6 @@ void generateMaze(std::array<std::array<char, cMazeColumns>, cMazeRows> &prMaze)
 
 
 }
-
 // Draws maze onto screen
 // Parameters:
 //      maze - maze field to draw
