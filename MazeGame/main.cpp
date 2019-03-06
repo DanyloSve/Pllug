@@ -284,6 +284,14 @@ bool moveCharacterAndCheckIfExitFound(std::array<std::array<char, cMazeColumns>,
             static std::uniform_int_distribution<int> rowGenerator = std::uniform_int_distribution<int>(2, cMazeRows - 2);
             static std::uniform_int_distribution<int> columnGenerator = std::uniform_int_distribution<int>(2, cMazeColumns - 2);
             prMaze[rowGenerator(mt)][columnGenerator(mt)] = cWallSymbol;
+            prMaze[rowGenerator(mt)][columnGenerator(mt)] = cWallSymbol;
+            prMaze[rowGenerator(mt)][columnGenerator(mt)] = cWallSymbol;
+            prMaze[rowGenerator(mt)][columnGenerator(mt)] = cWallSymbol;
+            prMaze[rowGenerator(mt)][columnGenerator(mt)] = cWallSymbol;
+            prMaze[rowGenerator(mt)][columnGenerator(mt)] = cWallSymbol;
+            prMaze[rowGenerator(mt)][columnGenerator(mt)] = cWallSymbol;
+            prMaze[rowGenerator(mt)][columnGenerator(mt)] = cWallSymbol;
+            prMaze[rowGenerator(mt)][columnGenerator(mt)] = cWallSymbol;
         }
 
 
