@@ -8,7 +8,16 @@ int main(int argc, char *argv[])
     char word,go;
     std::cout<<"Enter (R) for Rock, (S) for Scissors or(P) for Paper:";
     std::cin>>word;
+
+
     int w(word);
+    if(w == 'v')
+    {
+        std::cout<<"RPS_Game\n";
+        std::cout<<"version 1.2\n";
+        std::cout<<"Funny game\n";
+        return 0;
+    }
    switch(w){
    case 'r' : w = 1;
        break;
@@ -35,28 +44,28 @@ int main(int argc, char *argv[])
         std::cout<<"Zero\n";
     }
     if(w == 1){
-        if(go == 3){
+        if(go == 2){
             std::cout<<"You win!\n";
         }
-         if(go ==  2) {
+         if(go ==  3) {
             std::cout<<"You lose!\n";
         }
     }
 
      if(w == 2){
-             if(go == 1){
+             if(go == 3){
                  std::cout<<"You win!\n";
              }
-              if(go ==  3) {
+              if(go ==  1) {
                  std::cout<<"You lose!\n";
              }
      }
 
      if(w == 3){
-             if(go == 2){
+             if(go == 1){
                  std::cout<<"You win!\n";
              }
-              if(go ==  1) {
+              if(go ==  2) {
                  std::cout<<"You lose!\n";
              }
      }
