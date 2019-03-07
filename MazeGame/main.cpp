@@ -9,10 +9,12 @@ const int cMazeRows = 8;
 const char cEmptySymbol = ' ';
 const char cWallSymbol = 'X';
 const char cCharacterSymbol = '@';
-const char cExitSymbol = '#';
-const char cDontTOuchIt = '$';
+      char cExitSymbol = '#';
+      char cDontTOuchIt = '$';
 const char cFriend = '+';
 const char cEnemy = '&';
+const char cPoint = '*';
+const char cHide = '!';
 
 // Checks if user want so play
 // Return true if user wants to play; false otherwise
@@ -75,12 +77,17 @@ void generateMaze(std::array<std::array<char, cMazeColumns>, cMazeRows> &prMaze)
     prMaze[rowGenerator(mt)][columnGenerator(mt)] = cDontTOuchIt;
     prMaze[rowGenerator(mt)][columnGenerator(mt)] = cFriend;
     prMaze[rowGenerator(mt)][columnGenerator(mt)] = cEnemy;
+    prMaze[rowGenerator(mt)][columnGenerator(mt)] = cFriend;
+
+     prMaze[rowGenerator(mt)][columnGenerator(mt)] = cHide;
+     prMaze[rowGenerator(mt)][columnGenerator(mt)] = cHide;
+
 
 
 
 }
 // Draws maze onto screen
-// Parameters:
+
 //      maze - maze field to draw
 void drawMaze(const std::array<std::array<char, cMazeColumns>, cMazeRows> &maze)
 {
@@ -205,12 +212,15 @@ bool moveCharacterAndCheckIfExitFound(std::array<std::array<char, cMazeColumns>,
 
     int charRow = 1;
     int charColumn = 1;
+
     if (scanForChar(prMaze, cCharacterSymbol, charRow, charColumn))
     {
         std::cout << "$ - enemy\n";
         std::cout << "& - enemy\n";
-        std::cout << "* - enemy\n";
+        std::cout << "! - enemy\n";
+
         std::cout << "+ - friend\n";
+
 
         std::cout << "Command (l - left, r - right, u - up, d- down):";
 
@@ -223,6 +233,8 @@ bool moveCharacterAndCheckIfExitFound(std::array<std::array<char, cMazeColumns>,
         static std::uniform_int_distribution<int> rowGenerator = std::uniform_int_distribution<int>(2, cMazeRows - 2);
         static std::uniform_int_distribution<int> columnGenerator = std::uniform_int_distribution<int>(2, cMazeColumns - 2);
         prMaze[rowGenerator(mt)][columnGenerator(mt)] = cDontTOuchIt;
+
+
         if (charMovedOnto == cWallSymbol)
         {
             gameMessage("Cannot move here!");
@@ -239,29 +251,18 @@ bool moveCharacterAndCheckIfExitFound(std::array<std::array<char, cMazeColumns>,
             }
         }
 
+
         if (charMovedOnto == cExitSymbol)
         {
             gameMessage("Exit found!");
             rExitFound = true;
         }
-
-        if (charMovedOnto == cEnemy)
+        if (charMovedOnto == cFriend)
         {
-            static std::random_device rd;
-            static std::mt19937 mt{rd()};
-            static std::uniform_int_distribution<int> rowGenerator = std::uniform_int_distribution<int>(2, cMazeRows - 2);
-            static std::uniform_int_distribution<int> columnGenerator = std::uniform_int_distribution<int>(2, cMazeColumns - 2);
-            prMaze[rowGenerator(mt)][columnGenerator(mt)] = cEmptySymbol;
-            prMaze[rowGenerator(mt)][columnGenerator(mt)] = cEmptySymbol;
-            prMaze[rowGenerator(mt)][columnGenerator(mt)] = cEmptySymbol;
-            prMaze[rowGenerator(mt)][columnGenerator(mt)] = cEmptySymbol;
-            prMaze[rowGenerator(mt)][columnGenerator(mt)] = cEmptySymbol;
-            prMaze[rowGenerator(mt)][columnGenerator(mt)] = cEmptySymbol;
-            if(charMovedOnto ==cEmptySymbol)
-            {
-               rExitFound = true;
-            }
+            cDontTOuchIt = cEmptySymbol;
         }
+
+
 
         if (charMovedOnto == cDontTOuchIt)
         {
@@ -277,6 +278,7 @@ bool moveCharacterAndCheckIfExitFound(std::array<std::array<char, cMazeColumns>,
             static std::uniform_int_distribution<int> columnGenerator = std::uniform_int_distribution<int>(2, cMazeColumns - 2);
             prMaze[rowGenerator(mt)][columnGenerator(mt)] = cExitSymbol;
         }
+
         if(charMovedOnto == cEnemy)
         {
             static std::random_device rd;
