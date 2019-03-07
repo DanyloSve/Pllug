@@ -16,6 +16,11 @@ int main(int argc, char *argv[])
        break;
    case 'p' : w = 3;
        break;
+   default:
+   {
+       std::cout<<"Enter correct sign!\n";
+       goto l;
+   }
    }
     go = rand() % 3 + 1;
     switch(go){
